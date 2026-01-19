@@ -9,6 +9,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [icon(), mdx()],
-  outDir: 'public',
+  //Uniquement pour gitlab
+  //outDir: 'public',
   publicDir: 'static',
 });
