@@ -8,5 +8,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon(), mdx()]
+  integrations: [icon(), mdx()],
+  outDir: 'public',
+  publicDir: 'static',
 });
