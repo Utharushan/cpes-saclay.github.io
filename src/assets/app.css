@@ -1,5 +1,7 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @plugin "daisyui";
+
 
 /*
 @plugin "daisyui/theme" {
@@ -37,11 +39,29 @@
   --noise: 1;
 }
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
 @layer base {
   body {
     font-family: 'JetBrains Mono', monospace;
   }
 }
 */
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+.block-default {
+  border: red 2rem;
+}
+
+:root {
+  --astro-code-foreground: var(--color-base-content);
+  --astro-code-background: var(--color-base-300);
+  --astro-code-token-constant: var(--color-info);
+  --astro-code-token-string: var(--color-success);
+  --astro-code-token-comment: var(--color-success);
+  --astro-code-token-keyword: var(--color-error);
+  --astro-code-token-parameter: #ffa657;
+  --astro-code-token-function: var(--color-error);
+  --astro-code-token-string-expression: var(--color-success);
+  --astro-code-token-punctuation: #8b949e;
+  --astro-code-token-link: var(--color-info);
+}

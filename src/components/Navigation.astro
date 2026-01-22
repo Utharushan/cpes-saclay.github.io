@@ -2,27 +2,55 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<ul class="menu max-sm:min-h-full w-73 p-4 md:p-1 md:w-max md:menu-horizontal bg-base-100 md:border border-base-content/30 md:rounded-box md:justify-center z-10">
-    <li><a href="/"><Icon name="tabler:home" /> Accueil</a></li>
-    <li>
-        <details>
-          <summary><Icon name="tabler:book-2" />Cours</summary>
-          <ul class="p-2 bg-base-100 w-60 z-1">
-            <li><a>LIPPS</a></li>
-            <li><a>HEC</a></li>
-            <li><a>IPP</a></li>
-            <li><a>UPS</a></li>
-            <li><a href="/"><Icon name="tabler:clock" /> Volume Horaire</a></li>
-          </ul>
-        </details>
+<ul
+  class="menu max-sm:min-h-full w-73 p-4 md:p-1 md:w-max md:menu-horizontal bg-base-100 md:border border-base-content/30 md:rounded-box md:justify-center z-10"
+>
+  <li><a href="/"><Icon name="tabler:home" /> Accueil</a></li>
+  <li>
+    <details>
+      <summary><Icon name="tabler:book-2" />Cours</summary>
+      <ul class="p-2 bg-base-100 w-60 z-1">
+        <li><a href="/cours/lipps">LIPPS</a></li>
+        <li><a>HEC</a></li>
+        <li><a>IPP</a></li>
+        <li><a>UPS</a></li>
+        <li><a href="/"><Icon name="tabler:clock" /> Volume Horaire</a></li>
+      </ul>
+    </details>
+  </li>
+  <li>
+    <details>
+      <summary><Icon name="tabler:bed-flat" /> Internat</summary>
+      <ul class="p-2 bg-base-100 w-60 z-1">
+        <li><a>???</a></li>
+      </ul>
+    </details>
+  </li>
+  <li><a href="/etudiants"><Icon name="tabler:flower" /> Étudiants</a></li>
+  <li class="dropdown">
+    <div tabindex="0" role="button" class="">
+      <Icon name="tabler:sunset-2-filled" /> Theme
+      <svg
+        width="12px"
+        height="12px"
+        class="inline-block h-2 w-2 fill-current opacity-60"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 2048 2048"
+      >
+        <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"
+        ></path>
+      </svg>
+    </div>
+    <ul
+      tabindex="-1"
+      class="dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl"
+    >
+      <li>
+        <button data-set-theme="" data-act-class="ACTIVECLASS">Default</button>
       </li>
-          <li>
-        <details>
-          <summary><Icon name="tabler:bed-flat" /> Internat</summary>
-          <ul class="p-2 bg-base-100 w-60 z-1">
-            <li><a>???</a></li>
-          </ul>
-        </details>
+      <li>
+        <button data-set-theme="dark" data-act-class="ACTIVECLASS">Dark</button>
       </li>
-    <li><a href="/etudiants"><Icon name="tabler:flower" /> Étudiants</a></li>
+    </ul>
+  </li>
 </ul>
