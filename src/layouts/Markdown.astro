@@ -4,6 +4,7 @@ import "../assets/app.css";
 import "../assets/callouts.css"
 import Navbar from "../components/Navbar.astro";
 import Navigation from "../components/Navigation.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 ---
 
 <!DOCTYPE html data-theme="dark">
@@ -12,23 +13,24 @@ import Navigation from "../components/Navigation.astro";
   <body class="w-screen">
     <div class="drawer">
     <input id="mobile_drawer" type="checkbox" class="drawer-toggle" />
-    <div class="drawer-content">
-      <Navbar />
-      <div class="flex py-18 md:py-32 justify-center items-center">
-        <article class="prose lg:prose-lg">
-          <slot />
-        </article>
-      </div>
-      <footer class="footer footer-center p-4 fixed bottom-0 w-full bg-error/50 text-base-content rounded">
-        <div>
-          <p>Ce site internet n'est EN AUCUN CAS officiel et représentatif des CPES. Il sert uniquement de maquette.</p>
+      <div class="drawer-content flex flex-col justify-center items-center ">
+        <Navbar />
+        <div class="max-w-screen md:max-w-2/3 px-8 py-18 md:py-32 overflow-hidden">
+          <Breadcrumbs />
+          <article class="prose lg:prose-lg w-full max-w-full">
+            <slot />
+          </article>
         </div>
-      </footer>
+        <footer class="footer footer-center p-4 fixed bottom-0 w-full bg-error/50 text-base-content rounded">
+          <div>
+            <p>Ce site internet n'est EN AUCUN CAS officiel et représentatif des CPES. Il sert uniquement de maquette.</p>
+          </div>
+        </footer>
+      </div>
+      <div class="drawer-side">
+        <label for="mobile_drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <Navigation />
+      </div>
     </div>
-    <div class="drawer-side">
-      <label for="mobile_drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-      <Navigation />
-    </div>
-  </div>
   </body>
 </html>

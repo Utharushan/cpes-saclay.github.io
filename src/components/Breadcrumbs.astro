@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { url } = Astro;
+const pathSegments = url.pathname
+  .split("/")
+  .filter((segment) => segment !== "");
+
+// Generate breadcrumb items from URL path
+const breadcrumbs = [
+  { name: "Accueil", href: "/", icon: "tabler:home" },
+  ...pathSegments.map((segment, index) => {
+    const href = "/" + pathSegments.slice(0, index + 1).join("/");
+    const isLast = index === pathSegments.length - 1;
+    // Capitalize and replace hyphens with spaces
+    const name = segment
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+    return {
+      name,
+      href: isLast ? null : href, // Last item doesn't have a link
+      icon: isLast ? "tabler:file" : "tabler:folder",
+    };
+  }),
+];
+---
+
+<div class="breadcrumbs text-sm">
+  <ul>
+    {
+      breadcrumbs.map((crumb) =>
+        crumb.href ? (
+          <li>
+            <a href={crumb.href}>
+              <Icon name={crumb.icon} />
+              {crumb.name}
+            </a>
+          </li>
+        ) : (
+          <li>
+            <span class="inline-flex items-center gap-2">
+              <Icon name={crumb.icon} />
+              {crumb.name}
+            </span>
+          </li>
+        )
+      )
+    }
+  </ul>
+</div>
