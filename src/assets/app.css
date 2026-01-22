@@ -4,11 +4,11 @@
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
-/*
+
 @plugin "daisyui/theme" {
-  name: "dark";
-  default: true;
-  prefersdark: true;
+  name: "marcel";
+  default: false;
+  prefersdark: false;
   color-scheme: "dark";
   --color-base-100: oklch(13% 0.028 261.692);
   --color-base-200: oklch(21% 0.034 264.665);
@@ -40,17 +40,15 @@
   --noise: 1;
 }
 
-@layer base {
-  body {
-    font-family: 'JetBrains Mono', monospace;
-  }
-}
-*/
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-.block-default {
-  border: red 2rem;
+@custom-variant dark (&:where(
+  [data-theme=dark], [data-theme=dark] *,
+  [data-theme=marcel], [data-theme=marcel] *
+));
+
+.html {
+  scroll-behavior: smooth;
 }
 
 :root {
@@ -66,4 +64,9 @@
   --astro-code-token-string-expression: var(--color-success);
   --astro-code-token-punctuation: #8b949e;
   --astro-code-token-link: var(--color-info);
+}
+
+html[data-theme="marcel"] {
+  --default-font-family: 'JetBrains Mono', monospace, 'Fluent Emoji Color', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
 }
