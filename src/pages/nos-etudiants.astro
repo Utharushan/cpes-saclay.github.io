@@ -1,9 +1,10 @@
 ---
 import Default from "../layouts/Default.astro";
 import CarteEleve from "../components/CarteEleve.astro";
+const pageTitle = "Rencontrez nos étudiants";
 ---
 
-<Default>
+<Default title={pageTitle}>
     <h1 class="text-2xl font-bold">Rencontrez nos étudiants</h1>
     <p>Ce site n'a pas répondu à toutes vos questions ? Nos étudiants sont à votre disposition pour vous fournir davantage d'informations sur le CPES et vous partager</p>
     <div class="flex max-sm:justify-center gap-1 w-full mt-2">
@@ -53,7 +54,6 @@ import CarteEleve from "../components/CarteEleve.astro";
             form.addEventListener("change", applyFilters);
         });
 
-        // initial state
         applyFilters();
     </script>
 </Default>

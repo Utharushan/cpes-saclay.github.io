@@ -1,0 +1,98 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  titleKey?: string;
+  icon?: string;
+  class?: string;
+}
+
+const { title, titleKey, icon, class: className } = Astro.props;
+---
+
+<div class={`lg:hidden ${className || ''}`}>
+  <details class="group w-full">
+    <summary class="flex flex-row items-center text-[18px] gap-2 hover:font-medium transition-all hover:cursor-pointer">
+      {icon && <Icon name={icon} />}
+      {titleKey ? <span data-i18n={titleKey}>{title}</span> : title}
+      <Icon
+        name="ri:arrow-down-s-line"
+        class="text-xl transition-transform duration-200 ease-in-out group-open:rotate-180 ml-auto"
+      />
+    </summary>
+    <div class="flex flex-col gap-2 mt-4 pl-4 border-l border-secondary/10">
+      <slot />
+    </div>
+  </details>
+</div>
+
+<div class={`hidden lg:block relative ${className || ''}`} data-dropdown>
+  <div class="flex flex-row items-center text-[18px] gap-2 hover:font-medium transition-all hover:cursor-pointer" data-dropdown-trigger>
+    {icon && <Icon name={icon} />}
+    {titleKey ? <span data-i18n={titleKey}>{title}</span> : title}
+    <Icon
+      name="ri:arrow-down-s-line"
+      class="text-xl transition-transform duration-200 ease-in-out"
+      data-dropdown-arrow
+    />
+  </div>
+
+  <div
+    class="absolute flex flex-col gap-2 left-0 mt-4 w-max bg-primary p-4 border border-secondary/10 rounded-box shadow-xl opacity-0 translate-y-[-6px] pointer-events-none transition-all duration-200 ease-in-out"
+    data-dropdown-panel
+  >
+    <slot />
+  </div>
+</div>
+
+<script is:inline>
+if (typeof window !== 'undefined') {
+  const dropdowns = document.querySelectorAll('[data-dropdown]');
+
+  dropdowns.forEach(dropdown => {
+    const trigger = dropdown.querySelector('[data-dropdown-trigger]');
+    const panel = dropdown.querySelector('[data-dropdown-panel]');
+    const arrow = dropdown.querySelector('[data-dropdown-arrow]');
+    let timeout;
+
+    const closeAllSiblings = () => {
+      const siblings = Array.from(dropdown.parentElement.querySelectorAll('[data-dropdown]')).filter(d => d !== dropdown);
+      siblings.forEach(sib => {
+        const sibPanel = sib.querySelector('[data-dropdown-panel]');
+        const sibArrow = sib.querySelector('[data-dropdown-arrow]');
+        if (sibPanel) {
+          sibPanel.style.opacity = '0';
+          sibPanel.style.transform = 'translateY(-6px) scale(0.98)';
+          sibPanel.style.pointerEvents = 'none';
+        }
+        if (sibArrow) sibArrow.style.transform = 'rotate(0deg)';
+      });
+    };
+
+    const open = () => {
+      clearTimeout(timeout);
+      closeAllSiblings();
+      panel.style.opacity = '1';
+      panel.style.transform = 'translateY(0) scale(1)';
+      panel.style.pointerEvents = 'auto';
+      if (arrow) arrow.style.transform = 'rotate(180deg)';
+    };
+
+    const close = () => {
+      timeout = setTimeout(() => {
+        panel.style.opacity = '0';
+        panel.style.transform = 'translateY(-6px) scale(0.98)';
+        panel.style.pointerEvents = 'none';
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      }, 250);
+    };
+
+    trigger.addEventListener('mouseenter', open);
+    trigger.addEventListener('mouseleave', close);
+
+    panel.addEventListener('mouseenter', open);
+    panel.addEventListener('mouseleave', close);
+  });
+}
+</script>

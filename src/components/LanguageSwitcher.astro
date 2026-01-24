@@ -1,0 +1,58 @@
+---
+const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith('/en');
+const frUrl = isEnglish ? currentPath.replace(/^\/en/, '') || '/' : currentPath;
+const enUrl = isEnglish ? currentPath : `/en${currentPath}`;
+---
+
+<div class="flex items-center justify-center gap-1.5 mt-4 lg:mt-0 md:ml-8">
+  <a 
+    href={frUrl}
+    data-lang="fr"
+    class:list={[
+      "font-medium lang-switcher hover:font-medium",
+      !isEnglish ? "text-base-content text-xl" : "text-base-content/50 hover:text-base-content text-sm"
+    ]}
+  >
+    FR
+  </a>
+  <span class="text-base-content/50">|</span>
+  <a 
+    href={enUrl}
+    data-lang="en"
+    class:list={[
+      "font-medium lang-switcher hover:font-medium",
+      isEnglish ? "text-base-content text-xl" : "text-base-content/50 hover:text-base-content text-sm"
+    ]}
+  >
+    EN
+  </a>
+</div>
+
+<script>
+  function getCurrentLang() {
+    return window.location.pathname.startsWith('/en') ? 'en' : 'fr';
+  }
+
+  function updateAllTranslations() {
+    const currentLang = getCurrentLang();
+    localStorage.setItem('lang', currentLang);
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (key) {
+        import('../i18n/translations').then(({ t }) => {
+          el.textContent = t(currentLang as 'fr' | 'en', key as any);
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateAllTranslations();
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    updateAllTranslations();
+  });
+</script>
+

@@ -1,60 +1,122 @@
 ---
 import { Icon } from "astro-icon/components";
+import MenuItem from "./MenuItem.astro";
+import MenuDropdown from "./MenuDropdown.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 ---
 
-<ul
-  class="menu max-sm:min-h-full w-73 p-4 md:p-1 md:w-max md:menu-horizontal bg-base-100 md:border border-base-content/30 md:rounded-box md:justify-center z-10"
->
-  <li><a href="/"><Icon name="tabler:home" /> Accueil</a></li>
-  <li>
-    <details>
-      <summary><Icon name="tabler:book-2" />Cours</summary>
-      <ul class="p-2 bg-base-100 w-60 z-1">
-        <li><a href="/cours/lipps">LIPPS</a></li>
-        <li><a href="/cours/hec">HEC</a></li>
-        <li><a href="/cours/ipp">IPP</a></li>
-        <li><a href="/cours/ups">UPS</a></li>
-        <li><a href="/"><Icon name="tabler:clock" /> Volume Horaire</a></li>
-      </ul>
-    </details>
-  </li>
-  <li>
-    <details>
-      <summary><Icon name="tabler:bed-flat" /> Internat</summary>
-      <ul class="p-2 bg-base-100 w-60 z-1">
-        <li><a>???</a></li>
-      </ul>
-    </details>
-  </li>
-  <li><a href="/etudiants"><Icon name="tabler:flower" /> Étudiants</a></li>
-  <li class="dropdown">
-    <div tabindex="0" role="button" class="">
-      <Icon name="tabler:sunset-2-filled" /> Theme
-      <svg
-        width="12px"
-        height="12px"
-        class="inline-block h-2 w-2 fill-current opacity-60"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 2048 2048"
-      >
-        <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"
-        ></path>
-      </svg>
-    </div>
-    <ul
-      tabindex="-1"
-      class="dropdown-content bg-base-300 rounded-box z-1 w-52 p-2 shadow-2xl"
-    >
-      <li>
-        <button data-set-theme="light">Default</button>
-      </li>
-      <li>
-        <button data-set-theme="dark">Dark</button>
-      </li>
-       <li>
-        <button data-set-theme="marcel">Marcel</button>
-      </li>
-    </ul>
-    
-  </li>
-</ul>
+<div class="flex flex-col bg-primary lg:flex-row lg:items-center min-h-full lg:min-h-0 w-full lg:w-max py-10 px-6 lg:px-0 lg:py-0 gap-6 lg:justify-center z-10">
+  <div class="flex lg:hidden justify-between items-center w-full mb-6">
+    <p class="font-bold text-2xl" data-i18n="siteTitle">CPES Paris-Saclay</p>
+    <label for="mobile_drawer" class="hover:cursor-pointer">
+      <Icon name="ri:close-line" class="text-3xl" />
+    </label>
+  </div>
+
+  <MenuItem href="/"><span data-i18n="home">Accueil</span></MenuItem>
+
+  <MenuDropdown title="Cursus" titleKey="formation">
+    <MenuItem href="/a-propos"><span data-i18n="apropos">À propos</span></MenuItem>
+    <MenuItem href="/formation/lycee-international-de-palaiseau"><span data-i18n="lipps">Lycée International de Palaiseau</span></MenuItem>
+    <MenuItem href="/formation/institut-polytechnique-de-paris"><span data-i18n="ipp">Institut Polytechnique de Paris</span></MenuItem>
+    <MenuItem href="/formation/universite-paris-saclay"><span data-i18n="ups">Université Paris-Saclay</span></MenuItem>
+    <MenuItem href="/formation/hec-paris"><span data-i18n="hec">HEC Paris</span></MenuItem>
+    <MenuItem href="/formation/ens-paris-saclay"><span data-i18n="ens">ENS Paris-Saclay</span></MenuItem>
+  </MenuDropdown>
+
+  <MenuDropdown title="Informations" titleKey="informations">
+    <MenuItem href="/programme"><span data-i18n="programme">Programme détaillé</span></MenuItem>
+    <MenuItem href="/internat"><span data-i18n="internat">Internat</span></MenuItem>
+    <MenuItem href="/debouches"><span data-i18n="debouches">Débouchés</span></MenuItem>
+    <MenuItem href="/boursiers"><span data-i18n="boursiers">Boursiers</span></MenuItem>
+    <MenuItem href="/faq"><span data-i18n="faq">Réponses à vos questions</span></MenuItem>
+    <MenuItem href="/documents-officiels"><span data-i18n="documentsOfficiels">Documents officiels</span></MenuItem>
+  </MenuDropdown>
+
+  <MenuDropdown title="Ouvertures académiques" titleKey="ouvertures">
+    <MenuItem href="/langues-sports-ateliers"><span data-i18n="languesSportsAteliers">Langues, Sports et Ateliers</span></MenuItem>
+    <MenuItem href="/conferences"><span data-i18n="conferences">Conférences</span></MenuItem>
+    <MenuItem href="/visites"><span data-i18n="visites">Visites</span></MenuItem>
+    <MenuItem href="/projets-et-entrepreneuriat"><span data-i18n="projets">Projets et Entrepreneuriat</span></MenuItem>
+    <MenuItem href="/initiation-a-la-recherche"><span data-i18n="recherches">Initiation à la recherche</span></MenuItem>
+    <MenuItem href="/capstone"><span data-i18n="capstone">Capstone</span></MenuItem>
+  </MenuDropdown>
+
+  <MenuDropdown title="Vie et admissions" titleKey="vieEtAdmissions">
+    <MenuItem href="/nos-etudiants"><span data-i18n="etudiants">Nos étudiants</span></MenuItem>
+    <MenuItem href="/partenaires"><span data-i18n="partenaires">Partenaires</span></MenuItem>
+    <MenuItem href="/admission"><span data-i18n="admissions">Admission</span></MenuItem>
+    <MenuItem href="/contact"><span data-i18n="contact">Contact</span></MenuItem>
+  </MenuDropdown>
+
+  <LanguageSwitcher />
+
+  <div class="theme-toggle-btn flex items-center gap-2 text-2xl hover:cursor-pointer mx-auto z-50 lg:mx-0">
+    <Icon name="ri:sun-fill" class="theme-icon-light" />
+    <Icon name="ri:moon-line" class="theme-icon-dark hidden" />
+    <span class="lg:hidden text-base" data-i18n="mode">Mode</span>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    function updateThemeIcon() {
+      const currentTheme =
+        document.documentElement.getAttribute("data-theme") ||
+        localStorage.getItem("theme") ||
+        "cpes-paris-saclay-light";
+
+      const lightIcons = document.querySelectorAll(".theme-icon-light");
+      const darkIcons = document.querySelectorAll(".theme-icon-dark");
+
+      if (currentTheme === "cpes-paris-saclay-dark") {
+        lightIcons.forEach(function (icon) {
+          icon.classList.add("hidden");
+        });
+        darkIcons.forEach(function (icon) {
+          icon.classList.remove("hidden");
+        });
+      } else {
+        lightIcons.forEach(function (icon) {
+          icon.classList.remove("hidden");
+        });
+        darkIcons.forEach(function (icon) {
+          icon.classList.add("hidden");
+        });
+      }
+    }
+
+    var savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+
+    updateThemeIcon();
+    function attachListeners() {
+      var toggleButtons = document.querySelectorAll(".theme-toggle-btn");
+      toggleButtons.forEach(function (button) {
+        if (button.dataset.themeListenerAttached) return;
+        button.dataset.themeListenerAttached = "true";
+        button.addEventListener("click", function () {
+          var currentTheme =
+            document.documentElement.getAttribute("data-theme") ||
+            "cpes-paris-saclay-light";
+          var newTheme =
+            currentTheme === "cpes-paris-saclay-dark"
+              ? "cpes-paris-saclay-light"
+              : "cpes-paris-saclay-dark";
+
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+          updateThemeIcon();
+        });
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", attachListeners);
+    } else {
+      attachListeners();
+    }
+  })();
+</script>

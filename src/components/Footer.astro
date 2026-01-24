@@ -1,0 +1,83 @@
+---
+import { localizeHref } from "../utils/locale";
+const l = (href: string) => localizeHref(href, Astro.url);
+---
+
+<footer class="bg-primary">
+  <div class="bg-[url('/assets/footer_cpes.jpg')] bg-no-repeat bg-center bg-cover md:h-64 h-48">
+    <div class="bg-black/10 h-full">
+      <div class="text-white container mx-auto px-6 w-full flex flex-col items-left justify-center h-full">
+        <p class="text-2xl md:text-4xl font-bold">Texte à compléter</p>
+        <p class="mt-2 text-xl">Texte à compléter</p>
+      </div>
+    </div>
+  </div>
+  <div class="container mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row gap-8 justify-between">
+      <div class="flex flex-col items-start gap-4">
+        <img src="/assets/logo_cpes-paris-saclay.svg" alt="Logo du CPES Paris-Saclay" class="h-14 md:h-18 mt-2.5 dark:invert"/>
+        <p class="text-sm mb-4">
+            Texte à compléter
+        </p>
+      </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <p class="font-bold text-lg mb-4" data-i18n="formation">Cursus</p>
+                <div class="flex flex-col space-y-2 text-sm">
+                    <a href={l("/a-propos")} class="hover:font-medium transition-all" data-i18n="apropos">À propos</a>
+                    <a href={l("/formation/lycee-international-de-palaiseau")} class="hover:font-medium transition-all" data-i18n="lipps">Lycée International de Palaiseau</a>
+                    <a href={l("/formation/institut-polytechnique-de-paris")} class="hover:font-medium transition-all" data-i18n="ipp">Institut Polytechnique de Paris</a>
+                    <a href={l("/formation/universite-paris-saclay")} class="hover:font-medium transition-all" data-i18n="ups">Université Paris-Saclay</a>
+                    <a href={l("/formation/hec-paris")} class="hover:font-medium transition-all" data-i18n="hec">HEC Paris</a>
+                    <a href={l("/formation/ens-paris-saclay")} class="hover:font-medium transition-all" data-i18n="ens">ENS Paris-Saclay</a>
+                </div>
+            </div>
+            <div>
+                <p class="font-bold text-lg mb-4" data-i18n="informations">Informations</p>
+                <div class="flex flex-col space-y-2 text-sm">
+                    <a href={l("/programme")} class="hover:font-medium transition-all" data-i18n="programme">Programme détaillé</a>
+                    <a href={l("/internat")} class="hover:font-medium transition-all" data-i18n="internat">Internat</a>
+                    <a href={l("/debouches")} class="hover:font-medium transition-all" data-i18n="debouches">Débouchés</a>
+                    <a href={l("/boursiers")} class="hover:font-medium transition-all" data-i18n="boursiers">Boursiers</a>
+                    <a href={l("/faq")} class="hover:font-medium transition-all" data-i18n="faq">Réponses à vos questions</a>
+                    <a href={l("/documents-officiels")} class="hover:font-medium transition-all" data-i18n="documentsOfficiels">Documents officiels</a>
+                </div>
+            </div>
+            <div>
+                <p class="font-bold text-lg mb-4" data-i18n="ouvertures">Ouvertures académiques</p>
+                <div class="flex flex-col space-y-2 text-sm">
+                    <a href={l("/langues-sports-ateliers")} class="hover:font-medium transition-all" data-i18n="languesSportsAteliers">Langues, Sports et Ateliers</a>
+                    <a href={l("/conferences")} class="hover:font-medium transition-all" data-i18n="conferences">Conférences</a>
+                    <a href={l("/visites")} class="hover:font-medium transition-all" data-i18n="visites">Visites</a>
+                    <a href={l("/projets-et-entrepreneuriat")} class="hover:font-medium transition-all" data-i18n="projets">Projets et Entrepreneuriat</a>
+                    <a href={l("/initiation-a-la-recherche")} class="hover:font-medium transition-all" data-i18n="recherches">Initiation à la recherche</a>
+                    <a href={l("/capstone")} class="hover:font-medium transition-all" data-i18n="capstone">Capstone</a>
+                </div>
+            </div>
+            <div>
+                <p class="font-bold text-lg mb-4" data-i18n="vieEtAdmissions">Vie et admissions</p>
+                <div class="flex flex-col space-y-2 text-sm">
+                    <a href={l("/nos-etudiants")} class="hover:font-medium transition-all" data-i18n="etudiants">Nos étudiants</a>
+                    <a href={l("/partenaires")} class="hover:font-medium transition-all" data-i18n="partenaires">Partenaires</a>
+                    <a href={l("/admission")} class="hover:font-medium transition-all" data-i18n="admissions">Admission</a>
+                    <a href={l("/contact")} class="hover:font-medium transition-all" data-i18n="contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-16 flex flex-col md:flex-row justify-between md:items-center gap-4 text-sm">
+      <div class="text-left md:text-left">
+        <p>© CPES Paris-Saclay</p>
+      </div>
+      <div class="flex flex-wrap md:justify-center gap-x-6 gap-y-2">
+        <a href={l("/mentions-legales")} class="hover:font-medium transition-all">Mentions légales</a>
+        <a href={l("/politique-confidentialite")} class="hover:font-medium transition-all">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+  <div class="bg-error fixed text-white uppercase bottom-0 left-0 right-0 text-center py-3 px-4">
+    <p class="text-sm">
+      Ce site internet n'est EN AUCUN CAS officiel et représentatif des CPES. Il sert uniquement de maquette.
+    </p>
+  </div>
+</footer>

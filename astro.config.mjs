@@ -4,10 +4,16 @@ import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import remarkCallout from "@r4ai/remark-callout";
 
-// https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
+  },
+  i18n: {
+    defaultLocale: "fr",
+    locales: ["fr", "en"],
+    routing: {
+      prefixDefaultLocale: false
+    }
   },
   markdown: {
     remarkPlugins: [remarkCallout],
@@ -16,7 +22,5 @@ export default defineConfig({
     }
   },
   integrations: [icon(), mdx()],
-  //Uniquement pour gitlab
-  //outDir: 'public',
   publicDir: 'static',
 });

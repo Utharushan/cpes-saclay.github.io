@@ -1,51 +1,53 @@
 ---
 import { Icon } from "astro-icon/components";
 
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
 const { url } = Astro;
 const pathSegments = url.pathname
   .split("/")
   .filter((segment) => segment !== "");
-
-// Generate breadcrumb items from URL path
 const breadcrumbs = [
   { name: "Accueil", href: "/", icon: "tabler:home" },
   ...pathSegments.map((segment, index) => {
     const href = "/" + pathSegments.slice(0, index + 1).join("/");
     const isLast = index === pathSegments.length - 1;
-    // Capitalize and replace hyphens with spaces
-    const name = segment
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+    const name = isLast && title
+      ? title
+      : segment
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
     return {
       name,
-      href: isLast ? null : href, // Last item doesn't have a link
+      href: isLast ? null : href,
       icon: isLast ? "tabler:file" : "tabler:folder",
     };
   }),
 ];
 ---
 
-<div class="breadcrumbs text-sm">
-  <ul>
+<nav class="text-sm" aria-label="Fil d'Ariane">
+  <ul class="flex flex-wrap items-center gap-x-1 gap-y-2">
     {
-      breadcrumbs.map((crumb) =>
-        crumb.href ? (
-          <li>
-            <a href={crumb.href}>
-              <Icon name={crumb.icon} />
-              {crumb.name}
+      breadcrumbs.map((crumb, index) => (
+        <li class="flex items-center">
+          {index > 0 && <Icon name="ri:arrow-right-s-line" class="w-4 h-4 text-secondary mx-1 shrink-0" />}
+          {crumb.href ? (
+            <a href={crumb.href} class="no-underline text-secondary hover:text-secondary/80 transition-colors inline-flex items-center gap-1.5">
+              <Icon name={crumb.icon} class="w-4 h-4 shrink-0" />
+              <span class="break-words">{crumb.name}</span>
             </a>
-          </li>
-        ) : (
-          <li>
-            <span class="inline-flex items-center gap-2">
-              <Icon name={crumb.icon} />
-              {crumb.name}
+          ) : (
+            <span class="inline-flex items-center gap-1.5 text-base-content">
+              <span class="break-words">{crumb.name}</span>
             </span>
-          </li>
-        )
-      )
+          )}
+        </li>
+      ))
     }
   </ul>
-</div>
+</nav>
