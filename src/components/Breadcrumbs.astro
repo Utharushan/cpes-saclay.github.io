@@ -3,14 +3,15 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   title?: string;
+  icon?: string;
 }
 
-const { title } = Astro.props;
+const { title, icon } = Astro.props;
 const { url } = Astro;
 const pathSegments = url.pathname
   .split("/")
   .filter((segment) => segment !== "");
-const breadcrumbs = [
+let breadcrumbs = [
   { name: "Accueil", href: "/", icon: "tabler:home" },
   ...pathSegments.map((segment, index) => {
     const href = "/" + pathSegments.slice(0, index + 1).join("/");
@@ -24,10 +25,14 @@ const breadcrumbs = [
     return {
       name,
       href: isLast ? null : href,
-      icon: isLast ? "tabler:file" : "tabler:folder",
+      icon: isLast ? icon : "tabler:folder",
     };
   }),
 ];
+
+if (breadcrumbs.at(1)?.name === "En") {
+  breadcrumbs.splice(1, 1);
+}
 ---
 
 <nav class="text-sm" aria-label="Fil d'Ariane">
@@ -43,6 +48,7 @@ const breadcrumbs = [
             </a>
           ) : (
             <span class="inline-flex items-center gap-1.5 text-base-content">
+              {icon && <Icon name={crumb.icon} class="w-4 h-4 shrink-0" />}
               <span class="break-words">{crumb.name}</span>
             </span>
           )}
