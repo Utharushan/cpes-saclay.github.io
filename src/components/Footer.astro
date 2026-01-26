@@ -1,6 +1,9 @@
 ---
 import { localizeHref } from "../utils/locale";
+import { getLangFromUrl, useTranslations } from '../i18n';
 const l = (href: string) => localizeHref(href, Astro.url);
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="bg-primary">
@@ -22,45 +25,44 @@ const l = (href: string) => localizeHref(href, Astro.url);
       </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             <div>
-                <p class="font-bold text-lg mb-4" data-i18n="formation">Cursus</p>
+                <p class="font-bold text-lg mb-4" data-i18n="formation">{t('formation')}</p>
                 <div class="flex flex-col space-y-2 text-sm">
-                    <a href={l("/a-propos")} class="hover:font-medium transition-all" data-i18n="apropos">À propos</a>
-                    <a href={l("/formation/lycee-international-de-palaiseau")} class="hover:font-medium transition-all" data-i18n="lipps">Lycée International de Palaiseau</a>
-                    <a href={l("/formation/institut-polytechnique-de-paris")} class="hover:font-medium transition-all" data-i18n="ipp">Institut Polytechnique de Paris</a>
-                    <a href={l("/formation/universite-paris-saclay")} class="hover:font-medium transition-all" data-i18n="ups">Université Paris-Saclay</a>
-                    <a href={l("/formation/hec-paris")} class="hover:font-medium transition-all" data-i18n="hec">HEC Paris</a>
-                    <a href={l("/formation/ens-paris-saclay")} class="hover:font-medium transition-all" data-i18n="ens">ENS Paris-Saclay</a>
+                    <a href={l("/a-propos")} class="hover:font-medium transition-all" data-i18n="apropos">{t('apropos')}</a>
+                    <a href={l("/formation/lycee-international-de-palaiseau")} class="hover:font-medium transition-all" data-i18n="lipps">{t('lipps')}</a>
+                    <a href={l("/formation/institut-polytechnique-de-paris")} class="hover:font-medium transition-all" data-i18n="ipp">{t('ipp')}</a>
+                    <a href={l("/formation/universite-paris-saclay")} class="hover:font-medium transition-all" data-i18n="ups">{t('ups')}</a>
+                    <a href={l("/formation/hec-paris")} class="hover:font-medium transition-all" data-i18n="hec">{t('hec')}</a>
+                    <a href={l("/formation/ens-paris-saclay")} class="hover:font-medium transition-all" data-i18n="ens">{t('ens')}</a>
                 </div>
             </div>
             <div>
-                <p class="font-bold text-lg mb-4" data-i18n="informations">Informations</p>
+                <p class="font-bold text-lg mb-4" data-i18n="informations">{t('informations')}</p>
                 <div class="flex flex-col space-y-2 text-sm">
-                    <a href={l("/programme")} class="hover:font-medium transition-all" data-i18n="programme">Programme détaillé</a>
-                    <a href={l("/internat")} class="hover:font-medium transition-all" data-i18n="internat">Internat</a>
-                    <a href={l("/debouches")} class="hover:font-medium transition-all" data-i18n="debouches">Débouchés</a>
-                    <a href={l("/boursiers")} class="hover:font-medium transition-all" data-i18n="boursiers">Boursiers</a>
-                    <a href={l("/faq")} class="hover:font-medium transition-all" data-i18n="faq">Réponses à vos questions</a>
-                    <a href={l("/documents-officiels")} class="hover:font-medium transition-all" data-i18n="documentsOfficiels">Documents officiels</a>
+                    <a href={l("/programme")} class="hover:font-medium transition-all" data-i18n="programme">{t('programme')}</a>
+                    <a href={l("/debouches")} class="hover:font-medium transition-all" data-i18n="debouches">{t('debouches')}</a>
+                    <a href={l("/boursiers")} class="hover:font-medium transition-all" data-i18n="boursiers">{t('boursiers')}</a>
+                    <a href={l("/faq")} class="hover:font-medium transition-all" data-i18n="faq">{t('faq')}</a>
+                    <a href={l("/documents-officiels")} class="hover:font-medium transition-all" data-i18n="documentsOfficiels">{t('documentsOfficiels')}</a>
                 </div>
             </div>
             <div>
-                <p class="font-bold text-lg mb-4" data-i18n="ouvertures">Ouvertures académiques</p>
+                <p class="font-bold text-lg mb-4" data-i18n="ouvertures">{t('ouvertures')}</p>
                 <div class="flex flex-col space-y-2 text-sm">
-                    <a href={l("/langues-sports-ateliers")} class="hover:font-medium transition-all" data-i18n="languesSportsAteliers">Langues, Sports et Ateliers</a>
-                    <a href={l("/conferences")} class="hover:font-medium transition-all" data-i18n="conferences">Conférences</a>
-                    <a href={l("/visites")} class="hover:font-medium transition-all" data-i18n="visites">Visites</a>
-                    <a href={l("/projets-et-entrepreneuriat")} class="hover:font-medium transition-all" data-i18n="projets">Projets et Entrepreneuriat</a>
-                    <a href={l("/initiation-a-la-recherche")} class="hover:font-medium transition-all" data-i18n="recherches">Initiation à la recherche</a>
-                    <a href={l("/capstone")} class="hover:font-medium transition-all" data-i18n="capstone">Capstone</a>
+                    <a href={l("/langues-sports-ateliers")} class="hover:font-medium transition-all" data-i18n="languesSportsAteliers">{t('languesSportsAteliers')}</a>
+                    <a href={l("/conferences")} class="hover:font-medium transition-all" data-i18n="conferences">{t('conferences')}</a>
+                    <a href={l("/visites")} class="hover:font-medium transition-all" data-i18n="visites">{t('visites')}</a>
+                    <a href={l("/projets-et-entrepreneuriat")} class="hover:font-medium transition-all" data-i18n="projets">{t('projets')}</a>
+                    <a href={l("/initiation-a-la-recherche")} class="hover:font-medium transition-all" data-i18n="recherches">{t('recherches')}</a>
+                    <a href={l("/capstone")} class="hover:font-medium transition-all" data-i18n="capstone">{t('capstone')}</a>
                 </div>
             </div>
             <div>
-                <p class="font-bold text-lg mb-4" data-i18n="vieEtAdmissions">Vie et admissions</p>
+                <p class="font-bold text-lg mb-4" data-i18n="vieEtAdmissions">{t('vieEtAdmissions')}</p>
                 <div class="flex flex-col space-y-2 text-sm">
-                    <a href={l("/nos-etudiants")} class="hover:font-medium transition-all" data-i18n="etudiants">Nos étudiants</a>
-                    <a href={l("/partenaires")} class="hover:font-medium transition-all" data-i18n="partenaires">Partenaires</a>
-                    <a href={l("/admission")} class="hover:font-medium transition-all" data-i18n="admissions">Admission</a>
-                    <a href={l("/contact")} class="hover:font-medium transition-all" data-i18n="contact">Contact</a>
+                    <a href={l("/nos-etudiants")} class="hover:font-medium transition-all" data-i18n="etudiants">{t('etudiants')}</a>
+                    <a href={l("/partenaires")} class="hover:font-medium transition-all" data-i18n="partenaires">{t('partenaires')}</a>
+                    <a href={l("/admission")} class="hover:font-medium transition-all" data-i18n="admissions">{t('admissions')}</a>
+                    <a href={l("/contact")} class="hover:font-medium transition-all" data-i18n="contact">{t('contact')}</a>
                 </div>
             </div>
         </div>
@@ -70,8 +72,8 @@ const l = (href: string) => localizeHref(href, Astro.url);
         <p>© CPES Paris-Saclay</p>
       </div>
       <div class="flex flex-wrap md:justify-center gap-x-6 gap-y-2">
-        <a href={l("/mentions-legales")} class="hover:font-medium transition-all">Mentions légales</a>
-        <a href={l("/politique-confidentialite")} class="hover:font-medium transition-all">Politique de confidentialité</a>
+        <a href={l("/mentions-legales")} class="hover:font-medium transition-all">{t('mentionsLegales')}</a>
+        <a href={l("/politique-confidentialite")} class="hover:font-medium transition-all">{t('politiqueConfidentialite')}</a>
       </div>
     </div>
   </div>

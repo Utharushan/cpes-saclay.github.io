@@ -3,19 +3,18 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   title: string;
-  titleKey?: string;
   icon?: string;
   class?: string;
 }
 
-const { title, titleKey, icon, class: className } = Astro.props;
+const { title, icon, class: className } = Astro.props;
 ---
 
 <div class={`lg:hidden ${className || ''}`}>
   <details class="group w-full">
     <summary class="flex flex-row items-center text-[18px] gap-2 hover:font-medium transition-all hover:cursor-pointer">
       {icon && <Icon name={icon} />}
-      {titleKey ? <span data-i18n={titleKey}>{title}</span> : title}
+      {title}
       <Icon
         name="ri:arrow-down-s-line"
         class="text-xl transition-transform duration-200 ease-in-out group-open:rotate-180 ml-auto"
@@ -30,7 +29,7 @@ const { title, titleKey, icon, class: className } = Astro.props;
 <div class={`hidden lg:block relative ${className || ''}`} data-dropdown>
   <div class="flex flex-row items-center text-[18px] gap-2 hover:font-medium transition-all hover:cursor-pointer" data-dropdown-trigger>
     {icon && <Icon name={icon} />}
-    {titleKey ? <span data-i18n={titleKey}>{title}</span> : title}
+    {title}
     <Icon
       name="ri:arrow-down-s-line"
       class="text-xl transition-transform duration-200 ease-in-out"

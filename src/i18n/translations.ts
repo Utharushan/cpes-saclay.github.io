@@ -1,4 +1,9 @@
-import Partenaires from "../components/Partenaires.astro";
+export const languages = {
+  en: 'English',
+  fr: 'Français',
+};
+
+export const defaultLang = 'fr';
 
 export const translations = {
   fr: {
@@ -34,6 +39,8 @@ export const translations = {
     ens: "ENS Paris-Saclay",
     message404: "La page que vous recherchez n'existe pas.",
     titre404: "Page non trouvée",
+    mentionsLegales: "Mentions légales",
+    politiqueConfidentialite: "Politique de confidentialité",
   },
   en: {
     home: "Home",
@@ -68,12 +75,7 @@ export const translations = {
     ens: "ENS Paris-Saclay",
     message404: "The page you're looking for doesn't exist.",
     titre404: "Page not found",
+    mentionsLegales: "Legal notice",
+    politiqueConfidentialite: "Privacy Policy",
   }
 } as const;
-
-export type Language = keyof typeof translations;
-export type TranslationKey = keyof typeof translations.fr;
-
-export function t(lang: Language, key: TranslationKey): string {
-  return translations[lang][key];
-}

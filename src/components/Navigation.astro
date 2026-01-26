@@ -3,6 +3,11 @@ import { Icon } from "astro-icon/components";
 import MenuItem from "./MenuItem.astro";
 import MenuDropdown from "./MenuDropdown.astro";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+
+import { getLangFromUrl, useTranslations } from '../i18n';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="flex flex-col bg-primary lg:flex-row lg:items-center min-h-full lg:min-h-0 w-full lg:w-max py-10 px-6 lg:px-0 lg:py-0 gap-6 lg:justify-center z-10">
@@ -13,39 +18,39 @@ import LanguageSwitcher from "./LanguageSwitcher.astro";
     </label>
   </div>
 
-  <MenuItem href="/"><span data-i18n="home">Accueil</span></MenuItem>
+  <MenuItem href="/">{t('home')}</MenuItem>
 
-  <MenuDropdown title="Cursus" titleKey="formation">
-    <MenuItem href="/a-propos"><span data-i18n="apropos">À propos</span></MenuItem>
-    <MenuItem href="/formation/lycee-international-de-palaiseau"><span data-i18n="lipps">Lycée International de Palaiseau</span></MenuItem>
-    <MenuItem href="/formation/institut-polytechnique-de-paris"><span data-i18n="ipp">Institut Polytechnique de Paris</span></MenuItem>
-    <MenuItem href="/formation/universite-paris-saclay"><span data-i18n="ups">Université Paris-Saclay</span></MenuItem>
-    <MenuItem href="/formation/hec-paris"><span data-i18n="hec">HEC Paris</span></MenuItem>
-    <MenuItem href="/formation/ens-paris-saclay"><span data-i18n="ens">ENS Paris-Saclay</span></MenuItem>
+  <MenuDropdown title={t('formation')}>
+    <MenuItem href="/a-propos"> {t('apropos')}</MenuItem>
+    <MenuItem href="/formation/lycee-international-de-palaiseau"> {t('lipps')}</MenuItem>
+    <MenuItem href="/formation/institut-polytechnique-de-paris"> {t('ipp')}</MenuItem>
+    <MenuItem href="/formation/universite-paris-saclay"> {t('ups')}</MenuItem>
+    <MenuItem href="/formation/hec-paris"> {t('hec')}</MenuItem>
+    <MenuItem href="/formation/ens-paris-saclay"> {t('ens')}</MenuItem>
   </MenuDropdown>
 
-  <MenuDropdown title="Informations" titleKey="informations">
-    <MenuItem href="/programme"><span data-i18n="programme">Programme détaillé</span></MenuItem>
-    <MenuItem href="/debouches"><span data-i18n="debouches">Débouchés</span></MenuItem>
-    <MenuItem href="/boursiers"><span data-i18n="boursiers">Boursiers</span></MenuItem>
-    <MenuItem href="/faq"><span data-i18n="faq">Réponses à vos questions</span></MenuItem>
-    <MenuItem href="/documents-officiels"><span data-i18n="documentsOfficiels">Documents officiels</span></MenuItem>
+  <MenuDropdown title={t('informations')}>
+    <MenuItem href="/programme"> {t('programme')}</MenuItem>
+    <MenuItem href="/debouches"> {t('debouches')}</MenuItem>
+    <MenuItem href="/boursiers"> {t('boursiers')}</MenuItem>
+    <MenuItem href="/faq"> {t('faq')}</MenuItem>
+    <MenuItem href="/documents-officiels"> {t('documentsOfficiels')}</MenuItem>
   </MenuDropdown>
 
-  <MenuDropdown title="Ouvertures académiques" titleKey="ouvertures">
-    <MenuItem href="/langues-sports-ateliers"><span data-i18n="languesSportsAteliers">Langues, Sports et Ateliers</span></MenuItem>
-    <MenuItem href="/conferences"><span data-i18n="conferences">Conférences</span></MenuItem>
-    <MenuItem href="/visites"><span data-i18n="visites">Visites</span></MenuItem>
-    <MenuItem href="/projets-et-entrepreneuriat"><span data-i18n="projets">Projets et Entrepreneuriat</span></MenuItem>
-    <MenuItem href="/initiation-a-la-recherche"><span data-i18n="recherches">Initiation à la recherche</span></MenuItem>
-    <MenuItem href="/capstone"><span data-i18n="capstone">Capstone</span></MenuItem>
+  <MenuDropdown title={t('ouvertures')}>
+    <MenuItem href="/langues-sports-ateliers"> {t('languesSportsAteliers')}</MenuItem>
+    <MenuItem href="/conferences"> {t('conferences')}</MenuItem>
+    <MenuItem href="/visites"> {t('visites')}</MenuItem>
+    <MenuItem href="/projets-et-entrepreneuriat"> {t('projets')}</MenuItem>
+    <MenuItem href="/initiation-a-la-recherche"> {t('recherches')}</MenuItem>
+    <MenuItem href="/capstone"> {t('capstone')}</MenuItem>
   </MenuDropdown>
 
-  <MenuDropdown title="Vie et admissions" titleKey="vieEtAdmissions">
-    <MenuItem href="/nos-etudiants"><span data-i18n="etudiants">Nos étudiants</span></MenuItem>
-    <MenuItem href="/partenaires"><span data-i18n="partenaires">Partenaires</span></MenuItem>
-    <MenuItem href="/admission"><span data-i18n="admissions">Admission</span></MenuItem>
-    <MenuItem href="/contact"><span data-i18n="contact">Contact</span></MenuItem>
+  <MenuDropdown title={t('vieEtAdmissions')}>
+    <MenuItem href="/nos-etudiants"> {t('etudiants')}</MenuItem>
+    <MenuItem href="/partenaires"> {t('partenaires')}</MenuItem>
+    <MenuItem href="/admission"> {t('admissions')}</MenuItem>
+    <MenuItem href="/contact"> {t('contact')}</MenuItem>
   </MenuDropdown>
 
   <LanguageSwitcher />
