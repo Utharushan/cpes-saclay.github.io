@@ -1,4 +1,6 @@
 ---
+import { getLangFromUrl, useTranslations } from '../i18n/index';
+
 export interface Props {
   id?: string;
   numero?: string;
@@ -14,6 +16,8 @@ export interface Props {
 }
 
 const { id, numero, annee, semestre, intitule, description, duree, heures, etablissement, mode, credits } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <details class="course-detail" id={id}>
@@ -24,22 +28,22 @@ const { id, numero, annee, semestre, intitule, description, duree, heures, etabl
   <div class="course-content">
     <div class="course-header">
       {numero && <p><strong>No.</strong> {numero}</p>}
-      <p><strong>Année :</strong> {annee}</p>
-      <p><strong>Semestre :</strong> {semestre}</p>
-      <p><strong>Intitulé :</strong> {intitule}</p>
+      <p><strong>{t('annee')} :</strong> {annee}</p>
+      <p><strong>{t('semestre')} :</strong> {semestre}</p>
+      <p><strong>{t('intitule')} :</strong> {intitule}</p>
     </div>
     
     <div class="course-description">
-      <h4>Description du cours</h4>
+      <h4>{t('descriptionCours')}</h4>
       <div set:html={description} />
     </div>
     
     <div class="course-info">
-      <p><strong>Durée :</strong> {duree}</p>
-      <p><strong>Heures de cours :</strong> {heures}</p>
-      <p><strong>Établissement :</strong> {etablissement}</p>
-      <p><strong>Mode d'enseignement :</strong> {mode}</p>
-      <p><strong>Crédits :</strong> {credits}</p>
+      <p><strong>{t('duree')} :</strong> {duree}</p>
+      <p><strong>{t('heuresCours')} :</strong> {heures}</p>
+      <p><strong>{t('etablissement')} :</strong> {etablissement}</p>
+      <p><strong>{t('modeEnseignement')} :</strong> {mode}</p>
+      <p><strong>{t('credits')} :</strong> {credits}</p>
     </div>
   </div>
 </details>

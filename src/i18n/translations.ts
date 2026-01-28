@@ -41,6 +41,16 @@ export const translations = {
     titre404: "Page non trouvée",
     mentionsLegales: "Mentions légales",
     politiqueConfidentialite: "Politique de confidentialité",
+    // CourseDetail labels
+    annee: "Année",
+    semestre: "Semestre",
+    intitule: "Intitulé",
+    descriptionCours: "Description du cours",
+    duree: "Durée",
+    heuresCours: "Heures de cours",
+    etablissement: "Établissement",
+    modeEnseignement: "Mode d'enseignement",
+    credits: "Crédits",
   },
   en: {
     home: "Home",
@@ -77,5 +87,15 @@ export const translations = {
     titre404: "Page not found",
     mentionsLegales: "Legal notice",
     politiqueConfidentialite: "Privacy Policy",
+    // CourseDetail labels
+    annee: "Year",
+    semestre: "Semester",
+    intitule: "Title",
+    descriptionCours: "Course Description",
+    duree: "Duration",
+    heuresCours: "Course Hours",
+    etablissement: "Institution",
+    modeEnseignement: "Teaching Method",
+    credits: "Credits",
   }
 } as const;
